@@ -154,7 +154,9 @@ export default class extends Controller {
     this.timeTarget.textContent = text
     this.timeTarget.setAttribute("aria-label", `${text} remaining in ${this.kindLabel()}`)
     this.labelTarget.textContent = this.kindLabel()
-    this.progressTarget.setAttribute("value", String(pct))
+    const circumference = 2 * Math.PI * 86
+    this.progressTarget.style.strokeDasharray = String(circumference)
+    this.progressTarget.style.strokeDashoffset = String(circumference * (1 - pct / 100))
     this.toggleTarget.textContent = this.tick ? "Pause" : "Start"
     this.toggleTarget.setAttribute("aria-label", this.tick ? "Pause the timer" : "Start the timer")
     this.skipTarget.disabled = this.remaining === total && !this.tick
