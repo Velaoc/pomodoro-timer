@@ -1,0 +1,39 @@
+{
+  "name": "Pomodoro Timer",
+  "purpose": "A focused-work Pomodoro timer: start work and break sessions, track rounds, and keep a history of completed sessions.",
+  "actors": [
+    "Visitor (no account needed)"
+  ],
+  "entities": [
+    {
+      "name": "Session",
+      "relationships": [
+        "has kind (work|short_break|long_break), planned duration, completed_at",
+        "recorded when a countdown finishes"
+      ]
+    },
+    {
+      "name": "TimerSettings",
+      "relationships": [
+        "single row; work minutes, short break minutes, long break minutes, rounds before long break"
+      ]
+    }
+  ],
+  "workflows": [
+    {
+      "name": "Run a pomodoro",
+      "description": "Open the app straight to the timer; pick work or break; start, pause, reset, skip"
+    },
+    {
+      "name": "Auto-record completed sessions",
+      "description": "When a countdown reaches zero, save a Session with its kind and duration"
+    },
+    {
+      "name": "View history",
+      "description": "See today's focus minutes and a list of recent completed sessions"
+    }
+  ],
+  "modules": null,
+  "integrations": null,
+  "seed_demo": "A few completed work sessions spread over the last two days so history and today's focus-time summary render with data."
+}
