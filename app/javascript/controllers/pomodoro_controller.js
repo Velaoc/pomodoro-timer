@@ -69,7 +69,7 @@ export default class extends Controller {
 
   complete() {
     const payload = { session: { kind: this.kind, planned_minutes: this.minutesFor(this.kind) } }
-    fetch(this.data.get("create-url"), {
+    fetch(this.createUrlValue, {
       method: "POST",
       headers: { "Content-Type": "application/json", "X-CSRF-Token": this.csrfToken() },
       body: JSON.stringify(payload)
@@ -110,7 +110,7 @@ export default class extends Controller {
   }
 
   refreshHistory() {
-    fetch(this.data.get("history-url"), { headers: { Accept: "application/json" } })
+    fetch(this.historyUrlValue, { headers: { Accept: "application/json" } })
       .then((r) => r.json())
       .then((data) => {
         this.renderHistory(data.sessions)
