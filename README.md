@@ -1,7 +1,12 @@
+<!-- foundation:identity -->
 # Pomodoro Timer
 
 A focused-work Pomodoro timer: run 25-minute focus sessions, take short or
 long breaks, and keep a history of what you finished.
+
+- Site: https://pomodoro-timer.api.holode.xyz
+- Support: support@pomodoro-timer.api.holode.xyz
+<!-- /foundation:identity -->
 
 ## What it does
 
