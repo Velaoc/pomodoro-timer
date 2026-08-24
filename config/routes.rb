@@ -130,6 +130,9 @@ Rails.application.routes.draw do
     get "session", to: "sessions#show", as: :session
   end
 
-  # Minimal landing page until the M7 marketing set replaces it.
-  root "foundation/home#show"
+  # Product pages
+  resource :pomodoro, only: %i[show], controller: "pomodoros"
+  resources :pomodoro_sessions, only: %i[create index]
+
+  root "pomodoros#show"
 end
