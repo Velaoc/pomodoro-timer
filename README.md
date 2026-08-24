@@ -1,45 +1,38 @@
-<!-- foundation:identity -->
 # Pomodoro Timer
 
-A focused-work Pomodoro timer: start work and break sessions, track rounds, and keep a history of completed sessions.
+A focused-work Pomodoro timer: run 25-minute focus sessions, take short or
+long breaks, and keep a history of what you finished.
 
-- Site: https://pomodoro-timer.api.holode.xyz
-- Support: support@pomodoro-timer.api.holode.xyz
-<!-- /foundation:identity -->
+## What it does
 
-## What this is
+- A single-page timer, straight on the root — no account needed
+- Focus / short break / long break modes with a circular progress dial
+- Start, pause, reset, and skip controls
+- Completed sessions are recorded and shown in recent history
+- A "minutes focused today" summary keeps the daily tally
 
-A focused-work Pomodoro timer: start work and break sessions, track rounds, and keep a history of completed sessions.
+## Running it yourself
 
-## Who it is for
-
-- Visitor (no account needed)
-
-## Main features
-
-- **Run a pomodoro** — Open the app straight to the timer; pick work or break; start, pause, reset, skip
-- **Auto-record completed sessions** — When a countdown reaches zero, save a Session with its kind and duration
-- **View history** — See today's focus minutes and a list of recent completed sessions
-
-## Core entities
-
-- Session
-- TimerSettings
-
-## Run locally
-
-```bash
-bundle install
-bin/rails db:prepare
+```sh
+bin/setup
 bin/dev
 ```
 
-Requires Ruby, PostgreSQL, and the usual Rails toolchain. See `bin/setup` if present.
+Open http://localhost:3000. The timer runs entirely in the browser; completed
+sessions POST to `/pomodoro_sessions` and are stored in PostgreSQL.
+
+## Stack
+
+- Ruby on Rails (importmap + Stimulus, no Node build)
+- PostgreSQL
+- Material Design 3 chrome with a custom SVG timer dial
+
+## Tests
+
+```sh
+bin/rails test
+```
 
 ## Demo
 
-A few completed work sessions spread over the last two days so history and today's focus-time summary render with data.
-
-## Deploy notes
-
-Production `config.hosts` is derived from `domain` in `config/foundation.yml`. Keep that value aligned with the real host or every request will 403.
+The Holodex preview wipes daily at 3AM Mexico City; the repo is the keeper.
