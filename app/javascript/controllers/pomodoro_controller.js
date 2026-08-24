@@ -15,6 +15,7 @@ export default class extends Controller {
     this.kind = "work"
     this.remaining = this.workValue * 60
     this.tick = null
+    this.initialRounds = this.roundsValue
     this.originalTitle = document.title
     this.render()
   }
