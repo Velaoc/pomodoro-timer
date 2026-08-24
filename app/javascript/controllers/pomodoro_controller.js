@@ -6,7 +6,9 @@ export default class extends Controller {
     work: { type: Number, default: 25 },
     short: { type: Number, default: 5 },
     long: { type: Number, default: 15 },
-    rounds: { type: Number, default: 4 }
+    rounds: { type: Number, default: 4 },
+    createUrl: String,
+    historyUrl: String
   }
 
   connect() {
