@@ -1,0 +1,70 @@
+<% title "Pomodoro Timer" %>
+<% description "A focused-work Pomodoro timer: run focus sessions, take breaks, and keep a history of what you finished." %>
+
+<section class="md-section pomodoro-page" aria-labelledby="timer-title">
+  <div class="md-section__inner pomodoro-layout">
+    <div class="pomodoro-stage">
+      <div class="md-card md-card--elevated pomodoro-card"
+           data-controller="pomodoro"
+           data-pomodoro-create-url-value="<%= pomodoro_sessions_path %>"
+           data-pomodoro-history-url-value="<%= pomodoro_sessions_path %>"
+           data-pomodoro-work-value="25"
+           data-pomodoro-short-value="5"
+           data-pomodoro-long-value="15"
+           data-pomodoro-rounds-value="4">
+        <div class="pomodoro-card__header">
+          <h1 id="timer-title" class="md-section__heading">Pomodoro</h1>
+          <p class="md-section__eyebrow">Focus in, then break</p>
+        </div>
+
+        <div class="md-chip-row pomodoro-modes" role="group" aria-label="Timer mode">
+          <button type="button" class="md-chip md-chip--selected" data-pomodoro-target="work" data-action="pomodoro#selectWork">Focus</button>
+          <button type="button" class="md-chip" data-pomodoro-target="short" data-action="pomodoro#selectShort">Short break</button>
+          <button type="button" class="md-chip" data-pomodoro-target="long" data-action="pomodoro#selectLong">Long break</button>
+        </div>
+
+        <div class="pomodoro-dial" aria-hidden="true">
+          <svg viewBox="0 0 200 200" class="pomodoro-dial__svg">
+            <circle class="pomodoro-dial__track" cx="100" cy="100" r="86" />
+            <circle class="pomodoro-dial__progress" cx="100" cy="100" r="86" data-pomodoro-target="progress" value="0" />
+          </svg>
+          <div class="pomodoro-dial__center">
+            <span class="pomodoro-dial__time" data-pomodoro-target="time" role="timer" aria-live="off">25:00</span>
+            <span class="pomodoro-dial__label" data-pomodoro-target="label">Focus</span>
+          </div>
+        </div>
+
+        <div class="pomodoro-actions">
+          <button type="button" class="md-button md-button--filled pomodoro-toggle" data-pomodoro-target="toggle" data-action="pomodoro#start" aria-label="Start the timer">Start</button>
+          <button type="button" class="md-button md-button--outlined" data-pomodoro-target="skip" data-action="pomodoro#skip" disabled>Skip</button>
+          <button type="button" class="md-button md-button--text" data-action="pomodoro#reset">Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <aside class="pomodoro-side" aria-label="Today and history">
+      <div class="md-card md-card--filled pomodoro-summary">
+        <span class="md-section__eyebrow">Today</span>
+        <p class="pomodoro-summary__value" data-pomodoro-summary-target><%= @today_minutes %> min focused today</p>
+      </div>
+
+      <div class="md-card md-card--elevated pomodoro-history">
+        <div class="pomodoro-history__header">
+          <h2 class="md-section__heading">Recent sessions</h2>
+        </div>
+        <ul class="pomodoro-history__list" data-pomodoro-target="sessions">
+          <% @recent.each do |s| %>
+            <li class="md-session-row">
+              <span class="md-session-kind"><%= s.kind_label %></span>
+              <span class="md-session-minutes"><%= s.planned_minutes %> min</span>
+              <span class="md-session-time"><%= l(s.completed_at, format: :long) %></span>
+            </li>
+          <% end %>
+          <% if @recent.empty? %>
+            <li class="md-empty">No sessions yet — start your first pomodoro above.</li>
+          <% end %>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</section>
