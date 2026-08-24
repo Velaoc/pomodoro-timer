@@ -91,7 +91,11 @@ export default class extends Controller {
   nextKind() {
     if (this.kind === "work") {
       this.roundsValue -= 1
-      return this.roundsValue <= 0 ? "long" : "short"
+      if (this.roundsValue <= 0) {
+        this.roundsValue = this.initialRounds
+        return "long"
+      }
+      return "short"
     }
     return "work"
   }
