@@ -1,0 +1,177 @@
+/* Pomodoro Timer — the dial is the centerpiece: custom SVG, free of
+   Material tokens. The surrounding chrome stays on M3. */
+
+.pomodoro-page {
+  padding-block: 2rem 3rem;
+}
+
+.pomodoro-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.pomodoro-card {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.pomodoro-card__header {
+  text-align: center;
+}
+
+.pomodoro-card__header .md-section__heading {
+  margin-bottom: 0.25rem;
+}
+
+.pomodoro-modes {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pomodoro-modes .md-chip {
+  --md-chip-container-color: var(--md-sys-color-surface-container-high);
+}
+
+/* The dial */
+.pomodoro-dial {
+  position: relative;
+  width: min(340px, 78vw);
+  aspect-ratio: 1;
+}
+
+.pomodoro-dial__svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.pomodoro-dial__track {
+  fill: none;
+  stroke: var(--md-sys-color-surface-container-high);
+  stroke-width: 12;
+}
+
+.pomodoro-dial__progress {
+  fill: none;
+  stroke: var(--md-sys-color-primary);
+  stroke-width: 12;
+  stroke-linecap: round;
+  stroke-dasharray: 540.35;
+  stroke-dashoffset: 540.35;
+  transition: stroke-dashoffset 0.6s linear;
+}
+
+.pomodoro-dial__center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  pointer-events: none;
+}
+
+.pomodoro-dial__time {
+  font-size: clamp(3rem, 12vw, 4.5rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+  color: var(--md-sys-color-on-surface);
+  line-height: 1;
+}
+
+.pomodoro-dial__label {
+  font-size: 1.125rem;
+  color: var(--md-sys-color-on-surface-variant);
+}
+
+.pomodoro-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.pomodoro-toggle {
+  min-width: 120px;
+}
+
+/* Side: summary + history */
+.pomodoro-side {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.pomodoro-summary {
+  padding: 1.25rem;
+}
+
+.pomodoro-summary__value {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 0.25rem 0 0;
+}
+
+.pomodoro-history {
+  padding: 1.25rem;
+}
+
+.pomodoro-history__header {
+  margin-bottom: 0.75rem;
+}
+
+.pomodoro-history__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  max-height: 360px;
+  overflow-y: auto;
+}
+
+.md-session-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 0.75rem;
+  border-radius: 12px;
+  background: var(--md-sys-color-surface-container-low);
+}
+
+.md-session-kind {
+  font-weight: 600;
+  flex: 1;
+}
+
+.md-session-minutes {
+  color: var(--md-sys-color-on-surface-variant);
+  font-variant-numeric: tabular-nums;
+}
+
+.md-session-time {
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: 0.875rem;
+}
+
+.md-empty {
+  color: var(--md-sys-color-on-surface-variant);
+  padding: 0.5rem 0;
+}
+
+@media (max-width: 839px) {
+  .pomodoro-layout {
+    grid-template-columns: 1fr;
+  }
+}
